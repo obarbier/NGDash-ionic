@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DashboardService} from '../../providers/dashboard-service';
+import * as HighCharts from 'highcharts';
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -22,6 +24,30 @@ export class DashboardPage {
   }
 
   ionViewDidLoad() {
+
+var myChart = HighCharts.chart('container', {
+chart: {
+type: 'bar'
+},
+title: {
+text: 'Fruit Consumption'
+},
+xAxis: {
+categories: ['Apples', 'Bananas', 'Oranges']
+},
+yAxis: {
+title: {
+text: 'Fruit eaten'
+}
+},
+series: [{
+name: 'Jane',
+data: [1, 0, 4]
+}, {
+name: 'John',
+data: [5, 7, 3]
+}]
+});
     this.dashboardService.getGoodDashboards().subscribe(products =>  {
         console.log('this is a test');
         console.log(products);
